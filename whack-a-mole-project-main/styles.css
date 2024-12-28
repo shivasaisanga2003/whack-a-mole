@@ -1,0 +1,338 @@
+html {
+    font-size: 35px;
+    background: #98BCF4;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    cursor: none; /* Hide the default cursor */
+}
+
+/* Custom Cursor */
+.custom-cursor {
+    width: 50px;
+    height: 50px;
+    background: url('hammer.png') no-repeat center center / contain; /* Replace 'hammer.png' with the path to your image */
+    position: absolute;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+}
+
+.custom-cursor.active {
+    animation: click-effect 0.2s ease;
+}
+
+@keyframes click-effect {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(0.9);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Header */
+h1 {
+    text-align: center;
+    font-size: 100px;
+    line-height: 1;
+    margin-bottom: 0;
+}
+
+/* Score Display */
+.score {
+    background: rgb(184, 94, 20);
+    padding: 0 48px;
+    line-height: 1;
+    border-radius: 16px;
+    color: #fff;
+    margin-left: 15px;
+}
+
+/* Game Board */
+.game {
+    width: 600px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.hole {
+    flex: 1 0 33.33%;
+    overflow: hidden;
+    position: relative;
+}
+
+.hole:after {
+    display: block;
+    background: url(dirt.png) bottom center no-repeat;
+    background-size: contain;
+    content: '';
+    width: 100%;
+    height: 90px;
+    position: absolute;
+    z-index: 2;
+    bottom: -30px;
+}
+
+.mole {
+    background: url('mole.png') bottom center no-repeat;
+    background-size: 80%;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    height: 100%;
+    transition: all 0.4s;
+}
+
+.hole.up .mole {
+    top: 0;
+}
+
+/* Leaderboard */
+.leaderboard-container {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    width: 400px;
+    margin: 20px auto;
+    text-align: left;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #333;
+}
+
+.leaderboard {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.leaderboard li {
+    font-size: 1.2rem;
+    padding: 8px;
+    background: #e6e6e6;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leaderboard li span {
+    font-weight: bold;
+}
+
+/* Navigation Buttons */
+.button-container {
+    margin-top: 20px;
+}
+
+.nav-btn {
+    width: 200px;
+    font-size: 0.7rem;
+    padding: 10px 20px;
+    margin: 10px;
+    color: #fff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
+.nav-btn:active {
+    background-color: #004080;
+    transform: scale(0.95);
+}
+
+/* Start Button */
+button {
+    width: 175px;
+    font-size: 20px;
+    height: 70px;
+    color: #fff;
+    background-color: rgb(172, 29, 91);
+    border-radius: 10px;
+    margin-left: 20px;
+    margin-top: 90px;
+}
+
+.start-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px #2e7d32;
+    transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+    background-color: #45a049;
+    box-shadow: 0 6px #2e7d32;
+    transform: translateY(-2px);
+}
+
+.start-btn:active {
+    background-color: #388e3c;
+    box-shadow: 0 2px #1b5e20;
+    transform: translateY(2px);
+}
+
+/* Responsive Design */
+@media (min-width: 667px) and (max-width: 1024px) {
+    h1 {
+        display: none;
+    }
+
+    .score {
+        background: blue;
+        padding: 0 12px;
+        line-height: 1;
+        border-radius: 16px;
+        color: #fff;
+        font-size: 40px;
+        margin-left: 20px;
+    }
+
+    .hole.up .mole {
+        top: 17px;
+    }
+}
+
+@media (max-width: 667px) {
+    .game {
+        width: 667px;
+        height: 300px;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+    }
+
+    .score {
+        width: 35px;
+        font-size: 15px;
+        height: 40px;
+        color: #fff;
+        background-color: rgb(32, 32, 125);
+        border-radius: 10px;
+        margin-left: 10px;
+        margin-top: 10px;
+        padding: 5px;
+    }
+
+    button {
+        margin: 10px 10px 10px 10px;
+        height: 40px;
+        width: 75px;
+        font-size: 15px;
+    }
+
+    .hole:after {
+        display: block;
+        background: url(dirt.png) bottom center no-repeat;
+        background-size: contain;
+        content: '';
+        max-width: 70%;
+        height: 60px;
+        position: absolute;
+        z-index: 2;
+        bottom: -30px;
+    }
+
+    .mole {
+        background: url('mole.png') bottom center no-repeat;
+        background-size: 60%;
+        position: absolute;
+        top: 100%;
+        max-width: 70%;
+        height: 70%;
+        transition: all 0.4s;
+    }
+
+    .hole.up .mole {
+        top: 50px;
+    }
+}
+/* Media Queries for Responsiveness */
+
+/* Tablets (min-width: 667px) */
+@media (min-width: 667px) and (max-width: 1024px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .game {
+        width: 90%;
+    }
+
+    .score {
+        font-size: 1.2rem;
+    }
+
+    .leaderboard-container {
+        max-width: 500px;
+    }
+}
+
+/* Mobile Phones (max-width: 667px) */
+@media (max-width: 667px) {
+    html {
+        font-size: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .score {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+
+    .game {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hole {
+        max-width: 30%;
+    }
+
+    .hole:after {
+        background-size: cover;
+    }
+
+    .leaderboard-container {
+        font-size: 0.8rem;
+    }
+
+    .nav-btn,
+    .start-btn {
+        width: 90%;
+        font-size: 1rem;
+        padding: 0.8rem;
+    }
+}
+
